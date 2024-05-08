@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import AddCharacter from '../../components/AddCharacter';
+import ResetLegion from '../../components/ResetLegion';
 import Layout from '../../Layout';
 import './legion.css'
 
@@ -12,7 +13,7 @@ function Legion() {
     useEffect(() => {
         // Retrieve characters from localStorage
         // const storedCharacters = JSON.parse(localStorage.getItem('Characters')) || [];
-        const characters = JSON.parse(localStorage.getItem('Characters'));
+        const characters = JSON.parse(localStorage.getItem('Characters')) || [];
         setCharacters(characters)
     }, []);
 
@@ -22,6 +23,7 @@ function Legion() {
             <div className="Legion">
                 LEGION
                 <AddCharacter />
+                <ResetLegion />
 
                 <div className='legionContainer'>
                     {characters.map((character, index) => (
