@@ -2,10 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import AddCharacter from '../../components/AddCharacter';
-import { Card, CardHeader, CardBody, CardFooter, Box, Heading, Flex } from '@chakra-ui/react'
-import { Text } from '@chakra-ui/react';
-import Layout from '../../Layout.jsx';
-
+import Layout from '../../Layout';
+import './legion.css'
 
 // const [character, setCharacter] = useState(null)
 
@@ -19,31 +17,22 @@ function Legion() {
     }, []);
 
     return (
+
         <Layout>
             <div className="Legion">
                 LEGION
                 <AddCharacter />
-                <Flex>
-                    {characters.map((character, index) => (
-                        <Box key={index}>
-                            <Card>
-                                <CardHeader>
-                                    <Heading size='xs' textTransform='uppercase'>
-                                        {character.characterName}
-                                    </Heading>
-                                </CardHeader>
-                                {/* Display character details */}
-                                <CardBody>
-                                    <Text>Class: {character.characterClass}</Text>
-                                </CardBody>
 
-                            </Card>
-                        </Box>
-                    ))
-                    }
-                </Flex>
+                <div className='legionContainer'>
+                    {characters.map((character, index) => (
+                        <div className='legionBlock' key={index}>
+                            {/* Display character details */}
+                            Character Name: {character.characterName}, Class: {character.characterClass}
+                        </div>
+                    ))}
+                </div>
                 {/* Add other components or content as needed */}
-            </div >
+            </div>
         </Layout>
     )
 }
