@@ -21,24 +21,8 @@
 export default function Root() {
     return (
       <>
-        <div id="header">
-          <nav>
-            <ul>
-              <li>
-                <a href={`/dashboard`}>dash</a>
-              </li>
-              <li>
-                <a href={`/legion`}>legion</a>
-              </li>
-              <li>
-                <a href={`/checklists`}>checklists</a>
-              </li>
-              <li>
-                <a href={`/settings`}>settings</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        <div>Welcome to mapletracker</div>
+
       </>
     );
   }
