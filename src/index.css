@@ -77,12 +77,12 @@ button:focus-visible {
 .appMenu {
   background: linear-gradient(94deg, rgba(156, 110, 73, 0.49) -16.45%, rgba(133, 116, 103, 0.43) 128.2%), rgba(255, 236, 217, 0.50);
   display: flex;
+ 
   width: 401px;
   padding: 16px 8px;
   justify-content: center;
   align-items: center;
   gap: 24px;
-
   position: relative;
   text-align: center;
 
@@ -92,4 +92,21 @@ button:focus-visible {
 
   border-radius: 0px 0px 16px 16px;
 
+
+}
+
+.appMenu li{
+  list-style: none;
+}
+
+.menuElement{
+  display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 4px;
+}
+
+.icon {
+  margin: left 25%  auto;
 }
