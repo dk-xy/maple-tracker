@@ -7,6 +7,7 @@ import { useLocation } from 'react-use';
 // import BossesTab from "../../components/BossesTab.jsx";
 import ProgressionTab from "../../../components/CharacterPage/ProgressionTab"
 import BossesTab from "../../../components/CharacterPage/BossesTab"
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 
 
 export default function Character() {
@@ -17,15 +18,25 @@ export default function Character() {
     console.log(character)
     return (
         <div className="character-page">
-            {/* Render tabs based on user selection */}
-    
-            {/* {character === 'progression' ? <ProgressionTab /> : null}
-            {character === 'bosses' ? <BossesTab /> : null}  */}
-            {/* <button onClick={() => history.push('/character/progression')}>Progression</button>
-            <button onClick={() => history.push('/character/bosses')}>Bosses</button> */}
             {character.characterName}
-            
+            <Tabs>
+                <TabList>
+                    <Tab>Progression</Tab>
+                    <Tab>Bosses</Tab>
+                </TabList>
+                <TabPanels>
+                    <TabPanel>
+                        <ProgressionTab />
+                    </TabPanel>
+                    <TabPanel>
+                        <BossesTab />
+                    </TabPanel>
+                </TabPanels>
+            </Tabs>
         </div>
+
+
+
 
 
     );
