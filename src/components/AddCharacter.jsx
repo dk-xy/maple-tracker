@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useLocalStorage } from 'react-use';
 import { useForm } from 'react-hook-form';
+// import { v4 as uuidv4 } from 'uuid';
 
-function AddCharacter() {
+function AddCharacter(props) {
     const {
         register,
         handleSubmit,
@@ -10,38 +12,28 @@ function AddCharacter() {
     } = useForm()
 
 
-
-    // Initialize state variables
-    const [characterName, setCharacterName] = useState('characterName');
-    const [characterClass, setCharacterClass] = useState('characterClass');
-    const [Characters, setCharacters] = useState([]);
-
-    const newCharacter = {
-        characterName,
-        characterClass,
-    };
     const onSubmit = (data) => {
-        console.log(data)
-        const newCharacter = {
-            characterName: data.characterName,
-            characterClass: data.characterClass,
-        };
+              // Find the maximum existing ID
+              const maxExistingId = props.characters.reduce((maxId, char) => Math.max(maxId, char.id), 0);
 
-        // Retrieve existing characters from localStorage
-        const storedCharacters = JSON.parse(localStorage.getItem('Characters')) || [];
+              // Generate a new character with an incremented ID
+              const newCharacter = {
+                  id: maxExistingId + 1,
+                  characterName: data.characterName,
+                  characterClass: data.characterClass,
+              };
+      
+              // Always ensure characters is an array
+              const updatedCharacters = Array.isArray(props.characters)
+                  ? [...props.characters, newCharacter]
+                  : [newCharacter];
+                  
+      
+              // Update the characters state
+              props.setCharacters(updatedCharacters);
+  
+    };
 
-        // Add the new character to the existing array
-        const updatedCharacters = [...storedCharacters, newCharacter];
-
-        // Store the updated characters back in localStorage
-        localStorage.setItem('Characters', JSON.stringify(updatedCharacters));
-    }
-
-    useEffect(() => {
-        // Get existing Characters from localStorage (if any)
-        const storedCharacters = JSON.parse(localStorage.getItem('Characters')) || [];
-        setCharacters(storedCharacters);
-    }, []);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

@@ -4,10 +4,11 @@ import { ChakraProvider } from '@chakra-ui/react'
 // import App from './App.jsx'
 import Dashboard from "./routes/Dashboard.jsx";
 import Legion from "./routes/Legion/Legion.jsx";
+
 import Checklists from "./routes/Checklists.jsx";
 import Root from "./routes/Root.jsx";
 import Layout from './Layout.jsx';
-
+import Character from './routes/Legion/Character/Character.jsx';
 
 import {
   createBrowserRouter,
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
     element: <Legion />,
   },
   {
+    path: "character/:characterId",
+    element: <Character />,
+  },
+  {
     path: "checklists",
     element: <Checklists />,
   },
@@ -38,8 +43,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {/* <App /> */}
-
       <RouterProvider router={router} />
-
   </React.StrictMode>,
 )
