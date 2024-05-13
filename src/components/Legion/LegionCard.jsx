@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LegionCard = ({ character }) => {
+    const id = "/character/"+character.id 
     return (
         <div className='legionCard'>
+             <Link to={id}>LINK</Link>
             {/* Display character details */}
             <div>
                 Character Name: {character.characterName}
