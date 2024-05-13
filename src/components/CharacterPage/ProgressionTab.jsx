@@ -10,7 +10,7 @@ function ProgressionTab() {
 
       
             <div className="progressionTab">
-                BOSS TAB
+                PROG TAB
               
             </div>
 
