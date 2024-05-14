@@ -1,8 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+
 
 const LegionCard = ({ character }) => {
-    const id = "/character/" + character.id
+    const id = "/legion/" + character.id
+    // const { userId } = useParams();
     return (
         <div className='legionCard'>
             <Link to={id} state={{character: character}}>LINK</Link>
@@ -12,7 +15,9 @@ const LegionCard = ({ character }) => {
 
             </div>
             {/* Add other character details as needed */}
+          
         </div>
+        
     );
 };
 

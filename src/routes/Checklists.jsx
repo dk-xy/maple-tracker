@@ -5,11 +5,11 @@ import { useParams } from 'react-router-dom';
 
 
 export default function Checklists() {
-   return (<Layout>
+   return (
       <div>
          this is checklist
       </div>
-   </Layout>
+
    )
 };
 

@@ -2,6 +2,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useLocation } from 'react-use';
+import { Outlet } from 'react-router-dom';
 
 // import ProgressionTab from "../../components/ProgressionTab.jsx";
 // import BossesTab from "../../components/BossesTab.jsx";
@@ -26,13 +27,14 @@ export default function Character() {
                 </TabList>
                 <TabPanels>
                     <TabPanel>
-                        <ProgressionTab />
+                        <ProgressionTab character={character} />
                     </TabPanel>
                     <TabPanel>
-                        <BossesTab />
+                        <BossesTab character={character} />
                     </TabPanel>
                 </TabPanels>
             </Tabs>
+            <Outlet />
         </div>
 
 

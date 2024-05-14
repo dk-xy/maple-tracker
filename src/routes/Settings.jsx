@@ -7,9 +7,9 @@ import Layout from '../Layout';
 
 function Settings() {
     return (
-        <Layout>
+
             <div>THIS IS SETTINGS</div>
-        </Layout>
+
     )
 
 }

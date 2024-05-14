@@ -1,17 +1,19 @@
 // bosstab.jsx
 import React, { useState, useEffect } from 'react';
+import { useLocalStorage } from 'react-use';
+import { Link } from 'react-router-dom';
 
 
-// const [character, setCharacter] = useState(null)
+function ProgressionTab( ) {
+    const [progression] = useLocalStorage('Progression', []); // Only retrieve progression, not setProgression
 
-function ProgressionTab() {
-   
+    const charId = "edit-progression"
     return (
-
-      
             <div className="progressionTab">
-                PROG TAB
-              
+                <div>
+                PROG TAB 
+                </div>
+                <Link to={charId}  state={{progression: progression}}>EDIT</Link>  
             </div>
 
     )

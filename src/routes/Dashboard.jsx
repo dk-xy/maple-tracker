@@ -8,9 +8,9 @@ export default function Dashboard() {
 
 
    return (
-      <Layout>
+
          <div>THIS IS DASHBOARD@@@@@@@@@@@@@@@@@@@</div>
-      </Layout>
+
    )
 
 }

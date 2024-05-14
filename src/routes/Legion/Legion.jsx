@@ -5,36 +5,40 @@ import LegionCard from '../../components/Legion/LegionCard';
 import Layout from '../../Layout';
 import './legion.css';
 import { useLocalStorage } from 'react-use';
+import { Outlet } from 'react-router-dom';
 
 
 
 
 
 
-function Legion() {
+function Legion({ }) {
     // const [characters] = useLocalStorage('Characters', []);
-    const [characters, setCharacters] = useLocalStorage('Characters', [])
+    const [characters, setCharacters, removeCharacters] = useLocalStorage('Characters', [])
     // let allChars = localStorage.getItem('Characters');
     // setCharacters(JSON.parse(allChars));
+    console.log(characters)
     return (
-        <Layout>
-            <div className="Legion">
-                <h1>LEGION</h1>
-                <AddCharacter characters={characters} setCharacters={setCharacters} />
-                <ResetLegion />
-                <div className="legionContainer">
-                    {characters.length > 0 ? (
-                        characters.map((character, index) => (
-                            <div className="legionBlock" key={index}>
-                                <LegionCard character={character} />
-                            </div>
-                        ))
-                    ) : (
-                        <p>No characters available.</p>
-                    )}
-                </div>
+
+        <div className="Legion">
+            <h1>LEGION</h1>
+            <AddCharacter characters={characters} setCharacters={setCharacters} />
+            <ResetLegion characters={characters} removeCharacters={removeCharacters} />
+            <div className="legionContainer">
+                {characters.length > 0 ? (
+                    characters.map((character, index) => (
+                        <div className="legionBlock" key={index}>
+                            <LegionCard character={character} />
+                        </div>
+                    ))
+                ) : (
+                    <p>No characters available.</p>
+                )}
             </div>
-        </Layout>
+            <Outlet />
+        </div>
+
+
     );
 }
 
@@ -66,7 +70,7 @@ export default Legion;
 //         return () => {
 //             window.removeEventListener('storage', handleStorageChange);
 //         };
-//     }, []); 
+//     }, []);
 
 
 
