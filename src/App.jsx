@@ -9,6 +9,7 @@ import Legion from './routes/Legion/Legion';
 import Dashboard from './routes/Dashboard';
 import Checklists from './routes/Checklists';
 import Character from './routes/Legion/Character/Character';
+import EditProgression from './components/CharacterPage/EditProgression'
 import { useLocalStorage } from 'react-use';
 
 
@@ -68,6 +69,7 @@ const Navigation = () => {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="legion" element={<Legion />} ></Route>
         <Route path="legion/:id" element={<Character/>} />
+        <Route path="legion/:id/edit-progression" element={<EditProgression/>} />
         <Route path="checklists" element={<Checklists />} />
       </Routes>
     </div>

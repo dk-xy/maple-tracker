@@ -3,16 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useLocalStorage } from 'react-use';
 import { useLocation } from 'react-use';
 
-
-
-
-
-
 function EditProgression( ) {
 
-    const [progressionTracking, setProgressionTracking] = useLocalStorage('ProgressionTracking', []); // Only retrieve progression, not setProgression
-
-    
 const location = useLocation();
 console.log(location.state)
 const progressionSTate = location.state.usr;
@@ -34,20 +26,6 @@ const progressionSTate = location.state.usr;
         }
     }
 
-     // Handle checkbox changes
-     const handleCheckboxChange = (region, type) => {
-
-        setProgressionTracking((prevArcaneRiver) => ({
-            ...prevArcaneRiver,
-            regions: {
-                ...prevArcaneRiver.regions,
-                [region]: {
-                    ...prevArcaneRiver.regions[region],
-                    [type]: !prevArcaneRiver.regions[region][type],
-                },
-            },
-        }));
-    };
 
 
     return (
@@ -57,7 +35,7 @@ const progressionSTate = location.state.usr;
                 <input
                     type="checkbox"
                     checked={arcaneRiver.isActive}
-                    onChange={() => handleCheckboxChange('isActive', 'isActive')}
+                
                 />
                 Arcane River is active
             </label>
@@ -66,7 +44,7 @@ const progressionSTate = location.state.usr;
                     <input
                         type="checkbox"
                         checked={arcaneRiver.regions.Oblivion.isActive}
-                        onChange={() => handleCheckboxChange('Oblivion', 'isActive')}
+                   
                     />
                     Oblivion is active
                 </label>
