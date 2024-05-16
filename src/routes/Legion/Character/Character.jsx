@@ -1,6 +1,6 @@
 // Character.jsx
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useLocation, useLocalStorage } from 'react-use';
 import { Outlet } from 'react-router-dom';
 
@@ -14,6 +14,7 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 
 export default function Character() {
     const location = useLocation();
+    const linkName = "edit-progression";
     // const { characterId } = useParams(); // Assuming you have a character ID
     console.log(location)
     const character = location.state.usr.character
@@ -22,7 +23,8 @@ export default function Character() {
     const progressionId = character.id;
     return (
         <div className="character-page">
-            {character.characterName}
+            <div>{character.characterName}</div>
+            <Link to={linkName} state={{character: character, progression: progression } }>EDIT</Link>
             <Tabs>
                 <TabList>
                     <Tab>Progression</Tab>
