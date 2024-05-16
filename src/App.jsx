@@ -12,16 +12,20 @@ import Character from './routes/Legion/Character/Character';
 import EditProgression from './components/CharacterPage/EditProgression'
 import { useLocalStorage } from 'react-use';
 
+import { ProgressionContext } from './contexts/context';
 
 
 
 const App = () => {
 
-   
+  const [progression, setProgression] = useLocalStorage('progression', {});
 
   return (
     // <div className='App'>
-    <Navigation />
+    <ProgressionContext.Provider value={setProgression}>
+      <Navigation />
+    </ProgressionContext.Provider>
+
     // </div>
 
   )
@@ -68,8 +72,8 @@ const Navigation = () => {
 
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="legion" element={<Legion />} ></Route>
-        <Route path="legion/:id" element={<Character/>} />
-        <Route path="legion/:id/edit-progression" element={<EditProgression/>} />
+        <Route path="legion/:id" element={<Character />} />
+        <Route path="legion/:id/edit-progression" element={<EditProgression />} />
         <Route path="checklists" element={<Checklists />} />
       </Routes>
     </div>

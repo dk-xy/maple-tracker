@@ -13,7 +13,7 @@ const isEmptyProgression = Object.keys(progression).length === 1 && progression.
   return (
     <div className="progressionTab">
       <div>PROG TAB</div>
-      <Link to={linkName} state={{character: character, progression: progression }}>EDIT</Link>
+      <Link to={linkName} state={{character: character, progression: progression } }>EDIT</Link>
     </div>
   );
 }

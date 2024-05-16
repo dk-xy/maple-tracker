@@ -1,29 +1,42 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocalStorage } from 'react-use';
 import { useLocation } from 'react-use';
+import { ProgressionContext } from '../../contexts/context';
 
-function EditProgression( ) {
+function EditProgression() {
 
-const location = useLocation();
-// console.log(location.state)
-// const progressionState = location.state.usr.progression;
-// const characterState = location.state.usr.character;
-// console.log(progressionState)
-//  // Retrieve the specific progression data based on characterId
-// const theProg = progressionState.filter(item => item.characterId.includes(characterState.id))
-// console.log(theProg)
-// // console.log(progressionArray)
-// // // Retrieve the specific progression data based on characterId
-// // const specificProgression = progressionArray.find(item => item.characterId === characterState.id);
-// console.log(specificProgression)
+    const setProgression = useContext(ProgressionContext);
+    const location = useLocation();
 
+    const [isChecked, setIsChecked] = useState(false);
+
+    useEffect(() => {
+        if (isChecked) {
+            console.log("CHECKED")
+            setProgression(prevProgression => ({
+                ...prevProgression,
+                [location.state.usr.character.id]: {
+                    characterId: location.state.usr.character.id,
+                    progression: {
+                        arcaneRiver: true,
+                        // Add other progression fields here
+                    }
+                }
+            }));
+        }
+    }, [isChecked, setProgression, location.state.usr.character.id]);
+
+    console.log(location.state.usr.character)
+    console.log(location.state.usr.progression)
     return (
         <div className="editProgression">
             EDIT PROGRESSION HERE
             <label>
                 <input
                     type="checkbox"
+                    checked={isChecked}
+                    onChange={() => setIsChecked(!isChecked)}
                 />
                 Arcane River is active
             </label>
@@ -38,7 +51,7 @@ const location = useLocation();
             </div>
             {/* Add similar section for ChuChu */}
         </div>
-        
+
 
 
     )
