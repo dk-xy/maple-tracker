@@ -1,8 +1,9 @@
 // Character.jsx
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useLocation } from 'react-use';
+import { useLocation, useLocalStorage } from 'react-use';
 import { Outlet } from 'react-router-dom';
+
 
 // import ProgressionTab from "../../components/ProgressionTab.jsx";
 // import BossesTab from "../../components/BossesTab.jsx";
@@ -17,6 +18,8 @@ export default function Character() {
     console.log(location)
     const character = location.state.usr.character
     console.log(character)
+    const [progression, setProgression, removeProgression] = useLocalStorage('Progression', {});
+    const progressionId = character.id;
     return (
         <div className="character-page">
             {character.characterName}
@@ -27,14 +30,14 @@ export default function Character() {
                 </TabList>
                 <TabPanels>
                     <TabPanel>
-                        <ProgressionTab character={character} />
+                        <ProgressionTab character={character} progression={progression} setProgression={setProgression}  />
                     </TabPanel>
                     <TabPanel>
                         <BossesTab character={character} />
                     </TabPanel>
                 </TabPanels>
             </Tabs>
-            <Outlet />
+       
         </div>
 
 

@@ -2,28 +2,18 @@ import React, { useEffect } from 'react';
 import { useLocalStorage } from 'react-use';
 import { Link } from 'react-router-dom';
 
-function ProgressionTab({ character }) {
-  const [progression, setProgression] = useLocalStorage('Progression', {});
-  const progressionId = character.id;
-
-  useEffect(() => {
-    // Check if an object with the same characterId exists
-    if (!progression[progressionId]) {
-      // Set initial progression data for the specific characterId
-      const initialProgression = {
-        characterId: progressionId,
-        // Other properties specific to this character...
-      };
-      setProgression({ ...progression, [progressionId]: initialProgression });
-    }
-  }, [progression, progressionId]);
+function ProgressionTab({ character, progression, setProgression }) {
 
   const linkName = "edit-progression";
+
+(console.log(progression[character.id]));
+
+const isEmptyProgression = Object.keys(progression).length === 1 && progression.characterId;
 
   return (
     <div className="progressionTab">
       <div>PROG TAB</div>
-      <Link to={linkName} state={{ progression: progression }}>EDIT</Link>
+      <Link to={linkName} state={{character: character, progression: progression }}>EDIT</Link>
     </div>
   );
 }

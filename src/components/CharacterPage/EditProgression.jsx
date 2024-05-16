@@ -6,27 +6,17 @@ import { useLocation } from 'react-use';
 function EditProgression( ) {
 
 const location = useLocation();
-console.log(location.state)
-const progressionSTate = location.state.usr;
-
-
-    const arcaneRiver = {
-        isActive: Boolean,
-        regions: {
-            Oblivion: {
-                isActive: Boolean,
-                daily: Boolean,
-                weekly: Boolean,
-            },
-            ChuChu: {
-                isActive: Boolean,
-                daily: Boolean,
-                weekly: Boolean,
-            }
-        }
-    }
-
-
+// console.log(location.state)
+// const progressionState = location.state.usr.progression;
+// const characterState = location.state.usr.character;
+// console.log(progressionState)
+//  // Retrieve the specific progression data based on characterId
+// const theProg = progressionState.filter(item => item.characterId.includes(characterState.id))
+// console.log(theProg)
+// // console.log(progressionArray)
+// // // Retrieve the specific progression data based on characterId
+// // const specificProgression = progressionArray.find(item => item.characterId === characterState.id);
+// console.log(specificProgression)
 
     return (
         <div className="editProgression">
@@ -34,8 +24,6 @@ const progressionSTate = location.state.usr;
             <label>
                 <input
                     type="checkbox"
-                    checked={arcaneRiver.isActive}
-                
                 />
                 Arcane River is active
             </label>
@@ -43,8 +31,6 @@ const progressionSTate = location.state.usr;
                 <label>
                     <input
                         type="checkbox"
-                        checked={arcaneRiver.regions.Oblivion.isActive}
-                   
                     />
                     Oblivion is active
                 </label>
