@@ -4,13 +4,17 @@ import RegionProgression from './Progression/RegionProgression';
 import { useLocalStorage } from 'react-use';
 import { Link } from 'react-router-dom';
 import { CharacterContext } from '../../contexts/context';
+import { ProgressionContext } from '../../contexts/context';
 
-function ProgressionTab({ character, progression, setProgression }) {
+function ProgressionTab({ character }) {
 
   const { characters, setCharacters, removeCharacters } = useContext(CharacterContext);
+  const { progression, setProgression, removeProgression } = useContext(ProgressionContext);
   const vanishingJourney = progression[character.id]?.progression?.arcaneRiver?.regions?.vanishingJourney;
   const [completion, setCompletion] = useState(vanishingJourney?.completion || { daily: false, weekly: false });
   const regions = progression[character.id]?.progression?.arcaneRiver?.regions;
+
+
 
   const handleCompletionChange = (regionName, newCompletion) => {
     setProgression(prevProgression => {

@@ -6,7 +6,7 @@ import Layout from '../../Layout';
 import './legion.css';
 import { useLocalStorage } from 'react-use';
 import { Outlet } from 'react-router-dom';
-import { CharacterContext } from '../../contexts/context';
+import { CharacterContext, ProgressionContext } from '../../contexts/context';
 import { useContext } from 'react';
 
 
@@ -17,14 +17,23 @@ function Legion({ }) {
     // const [characters] = useLocalStorage('Characters', []);
     // const [characters, setCharacters, removeCharacters] = useLocalStorage('Characters', [])
     const { characters, setCharacters, removeCharacters} = useContext(CharacterContext);
+    const { progression, setProgression, removeProgression } = useContext(ProgressionContext);
     // let allChars = localStorage.getItem('Characters');
     // setCharacters(JSON.parse(allChars));
     console.log(characters)
+
+    const handleAddCharacter = (characterId, characterData) => {
+        setProgression(prevProgression => ({
+          ...prevProgression,
+          [characterId]: characterData,
+        }));
+      };
+
     return (
 
         <div className="Legion">
             <h1>LEGION</h1>
-            <AddCharacter characters={characters} setCharacters={setCharacters} />
+            <AddCharacter onAddCharacter={handleAddCharacter} />
             <ResetLegion characters={characters} removeCharacters={removeCharacters} />
             <div className="legionContainer">
                 {characters.length > 0 ? (
@@ -43,6 +52,7 @@ function Legion({ }) {
 
     );
 }
+
 
 export default Legion;
 

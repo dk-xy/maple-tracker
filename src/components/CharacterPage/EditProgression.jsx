@@ -41,6 +41,7 @@ function EditProgression() {
               isActive: true, // This indicates whether the Arcane River progression is active or not
               regions: {
                 vanishingJourney: {
+                  // name:"Oblivion",
                   isActive: false, // This indicates whether the Vanishing Journey region is active or not
                   completion: {
                     daily: false,
@@ -48,6 +49,7 @@ function EditProgression() {
                   }
                 },
                 chuChuIsland: {
+                  // name:"ChuChu",
                   isActive: false, // This indicates whether the Chu Chu Island region is active or not
                   completion: {
                     daily: false,

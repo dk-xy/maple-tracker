@@ -1,26 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useLocalStorage } from 'react-use';
 import { useForm } from 'react-hook-form';
 // import { v4 as uuidv4 } from 'uuid';
+import { ProgressionContext } from '../contexts/context';
+import { CharacterContext } from '../contexts/context';
 
-function AddCharacter(legion) {
+function AddCharacter({ onAddCharacter }) {
+    const { characters, setCharacters } = useContext(CharacterContext);
     const {
         register,
         handleSubmit,
         watch,
         formState: { errors },
     } = useForm()
-console.log("THIS IS LEGION")
-console.log(legion)
+
+    // Generate a new progression object for the new character
+
+
+    console.log("THIS IS LEGION")
+    console.log(characters)
     const onSubmit = (data) => {
         let maxExistingId = 0;
-        if(Array.isArray(legion.characters) && legion.characters.length > 0){
-             maxExistingId = legion.characters.reduce((maxId, char) => Math.max(maxId, char.id), 0);
-        } else{
-             maxExistingId = 0;
+        if (Array.isArray(characters) && characters.length > 0) {
+            maxExistingId = characters.reduce((maxId, char) => Math.max(maxId, char.id), 0);
+        } else {
+            maxExistingId = 0;
         }
         // Find the maximum existing ID
- 
+
 
         // Generate a new character with an incremented ID
         const newCharacter = {
@@ -32,13 +39,21 @@ console.log(legion)
         // Always ensure characters is an array
 
         // Always ensure characters is an array
-        const updatedCharacters = Array.isArray(legion.characters)
-            ? [...legion.characters, newCharacter]
+        const updatedCharacters = Array.isArray(characters)
+            ? [...characters, newCharacter]
             : [newCharacter];
 
-        // Update the characters state
-        legion.setCharacters(updatedCharacters);
+        const newProgression = {
+            characterId: newCharacter.id,
+            progression: {
+                // Add your default progression data here
+            },
+        };
 
+        setCharacters(updatedCharacters);
+        onAddCharacter(newCharacter.id, newProgression);
+
+        
     };
 
 
