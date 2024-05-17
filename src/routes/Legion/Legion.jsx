@@ -6,7 +6,8 @@ import Layout from '../../Layout';
 import './legion.css';
 import { useLocalStorage } from 'react-use';
 import { Outlet } from 'react-router-dom';
-
+import { CharacterContext } from '../../contexts/context';
+import { useContext } from 'react';
 
 
 
@@ -14,7 +15,8 @@ import { Outlet } from 'react-router-dom';
 
 function Legion({ }) {
     // const [characters] = useLocalStorage('Characters', []);
-    const [characters, setCharacters, removeCharacters] = useLocalStorage('Characters', [])
+    // const [characters, setCharacters, removeCharacters] = useLocalStorage('Characters', [])
+    const { characters, setCharacters, removeCharacters} = useContext(CharacterContext);
     // let allChars = localStorage.getItem('Characters');
     // setCharacters(JSON.parse(allChars));
     console.log(characters)

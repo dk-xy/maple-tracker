@@ -12,18 +12,23 @@ import Character from './routes/Legion/Character/Character';
 import EditProgression from './components/CharacterPage/EditProgression'
 import { useLocalStorage } from 'react-use';
 
-import { ProgressionContext } from './contexts/context';
+import { ProgressionContext, CharacterContext } from './contexts/context';
 
 
 
 const App = () => {
 
-  const [progression, setProgression] = useLocalStorage('progression', {});
+  const [progression, setProgression] = useLocalStorage('Progression', {});
+  const [characters, setCharacters, removeCharacters] = useLocalStorage('Characters', {});
 
   return (
     // <div className='App'>
-    <ProgressionContext.Provider value={setProgression}>
-      <Navigation />
+    <ProgressionContext.Provider value={{ progression, setProgression }}>
+
+      <CharacterContext.Provider value={{ characters, setCharacters }}>
+        <Navigation />
+      </CharacterContext.Provider>
+
     </ProgressionContext.Provider>
 
     // </div>

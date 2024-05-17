@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+
 import { useLocalStorage } from 'react-use';
 import { Link } from 'react-router-dom';
+import { CharacterContext } from '../../contexts/context';
 
 function ProgressionTab({ character, progression, setProgression }) {
+
+  const { characters, setCharacters, removeCharacters} = useContext(CharacterContext);
 
   // const linkName = "edit-progression";
 
