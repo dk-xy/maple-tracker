@@ -7,36 +7,35 @@ import { CharacterContext } from '../../contexts/context';
 
 function ProgressionTab({ character, progression, setProgression }) {
 
-  const { characters, setCharacters, removeCharacters} = useContext(CharacterContext);
+  const { characters, setCharacters, removeCharacters } = useContext(CharacterContext);
   const vanishingJourney = progression[character.id]?.progression?.arcaneRiver?.regions?.vanishingJourney;
   const [completion, setCompletion] = useState(vanishingJourney?.completion || { daily: false, weekly: false });
   const regions = progression[character.id]?.progression?.arcaneRiver?.regions;
 
-  const handleCompletionChange = (newCompletion) => {
-    setCompletion(newCompletion);
+  const handleCompletionChange = (regionName, newCompletion) => {
     setProgression(prevProgression => {
       const newProgression = { ...prevProgression };
-      newProgression[character.id].progression.arcaneRiver.regions.vanishingJourney.completion = newCompletion;
+      newProgression[character.id].progression.arcaneRiver.regions[regionName].completion = newCompletion;
       return newProgression;
     });
   };
 
   // const linkName = "edit-progression";
 
-(console.log(progression[character.id]));
+  (console.log(progression[character.id]));
 
-const isEmptyProgression = Object.keys(progression).length === 1 && progression.characterId;
+  const isEmptyProgression = Object.keys(progression).length === 1 && progression.characterId;
 
-return (
+  return (
     <div className="progressionTab">
       <div>PROG TAB</div>
       {regions && Object.entries(regions).map(([regionName, region]) => (
-        region.isActive && 
-        <RegionProgression 
-          key={regionName} 
-          regionName={regionName} 
-          completion={region.completion} 
-          setCompletion={newCompletion => handleCompletionChange(regionName, newCompletion)} 
+        region.isActive &&
+        <RegionProgression
+          key={regionName}
+          regionName={regionName}
+          completion={region.completion || { daily: false, weekly: false }}
+          setCompletion={newCompletion => handleCompletionChange(regionName, newCompletion)}
         />
       ))}
     </div>
