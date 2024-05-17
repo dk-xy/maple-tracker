@@ -13,48 +13,105 @@ function EditProgression() {
   const isArcaneRiverActive = progression[characterId]?.progression?.arcaneRiver || false;
   const [isChecked, setIsChecked] = useState(isArcaneRiverActive);
 
+  // const [isVanishingJourneyChecked, setIsVanishingJourneyChecked] = useState(false);
+  // const [isChuChuIslandChecked, setIsChuChuIslandChecked] = useState(false);
 
 
+  const isVanishingJourneyActive = progression[characterId]?.progression?.arcaneRiver?.regions?.vanishingJourney?.isActive || false;
+  const [isVanishingJourneyChecked, setIsVanishingJourneyChecked] = useState(isVanishingJourneyActive);
+  
+  const isChuChuIslandActive = progression[characterId]?.progression?.arcaneRiver?.regions?.chuChuIsland?.isActive || false;
+  const [isChuChuIslandChecked, setIsChuChuIslandChecked] = useState(isChuChuIslandActive);
 
 
   useEffect(() => {
     setProgression(prevProgression => {
       const newProgression = { ...prevProgression };
       if (newProgression[characterId]?.progression?.arcaneRiver) {
-        newProgression[characterId].progression.arcaneRiver.isActive = isChecked;
+        // newProgression[characterId].progression.arcaneRiver.isActive = isChecked;
+        // Set the completion status for each region based on the checkbox state
+        newProgression[characterId].progression.arcaneRiver.regions.vanishingJourney.isActive = isVanishingJourneyChecked;
+        newProgression[characterId].progression.arcaneRiver.regions.chuChuIsland.isActive = isChuChuIslandChecked;
+        // Add more regions as needed
       } else {
         newProgression[characterId] = {
           characterId,
           progression: {
             arcaneRiver: {
-              isActive: isChecked,
-              completion: {
-                vanishingJourney: false,
-                chuChuIsland: false,
-                lachelein: false,
-                arcana: false,
-                morass: false,
-                esfera: false,
-                moonbridge: false
-              }
-            },
-            Grandis: {
-              isActive: false,
-              completion: {
-                cernium: false,
-                arcus: false,
-                odium: false,
-                shangrila: false,
-                arteria: false,
-                carcion: false
+              isActive: true, // This indicates whether the Arcane River progression is active or not
+              regions: {
+                vanishingJourney: {
+                  isActive: false, // This indicates whether the Vanishing Journey region is active or not
+                  completion: {
+                    daily: false,
+                    weekly: false
+                  }
+                },
+                chuChuIsland: {
+                  isActive: false, // This indicates whether the Chu Chu Island region is active or not
+                  completion: {
+                    daily: false,
+                    weekly: false
+                  }
+                },
+                // Add more regions as needed
               }
             }
+            // Rest of the progression object
           },
         };
       }
       return newProgression;
     });
-  }, [isChecked, setProgression, characterId]);
+  }, [characterId, isChecked, isVanishingJourneyChecked, isChuChuIslandChecked]); // Add more dependencies as needed
+
+
+  // useEffect(() => {
+  //   setProgression(prevProgression => {
+  //     const newProgression = { ...prevProgression };
+  //     if (newProgression[characterId]?.progression?.arcaneRiver) {
+  //       newProgression[characterId].progression.arcaneRiver.isActive = isChecked;
+  //     } else {
+  //       newProgression[characterId] = {
+  //         characterId,
+  //         progression: {
+  //           arcaneRiver: {
+  //             isActive: isChecked,
+  //             completion: {
+  //               vanishingJourney: {
+  //                 isActive: false,
+  //                 completion: {
+  //                   daily: false,
+  //                   weekly: false
+  //                 }
+  //               },
+  //               chuChuIsland: {
+  //                 isActive: false,
+  //                 completion: {
+  //                   daily: false,
+  //                   weekly: false
+  //                 }
+  //               },
+
+  //             }
+  //           },
+  //           Grandis: {
+  //             isActive: false,
+  //             completion: {
+  //               cernium: false,
+  //               arcus: false,
+  //               odium: false,
+  //               shangrila: false,
+  //               arteria: false,
+  //               carcion: false
+  //             }
+  //           }
+  //         },
+  //       };
+  //     }
+  //     return newProgression;
+  //   });
+  // }, [isChecked, setProgression, characterId]);
 
   // useEffect(() => {
 
@@ -130,21 +187,23 @@ function EditProgression() {
   return (
     <div className="editProgression">
       EDIT PROGRESSION HERE
-      <label>
-        <input
+
+        <label>Oblivion
+        <input type="checkbox" checked={isVanishingJourneyChecked} onChange={e => setIsVanishingJourneyChecked(e.target.checked)} /> 
+        </label>
+        <label>ChuChu
+        <input type="checkbox" checked={isChuChuIslandChecked} onChange={e => setIsChuChuIslandChecked(e.target.checked)} />
+        </label>
+        {/* <input
           type="checkbox"
           checked={isChecked}
           onChange={() => setIsChecked(!isChecked)}
         />
-        Arcane River is active
-      </label>
+        
+        Arcane River is active */}
+
       <div>
-        <label>
-          <input
-            type="checkbox"
-          />
-          Oblivion is active
-        </label>
+
         {/* Add similar checkboxes for daily and weekly */}
       </div>
       {/* Add similar section for ChuChu */}
