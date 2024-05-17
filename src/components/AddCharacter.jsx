@@ -3,35 +3,42 @@ import { useLocalStorage } from 'react-use';
 import { useForm } from 'react-hook-form';
 // import { v4 as uuidv4 } from 'uuid';
 
-function AddCharacter(props) {
+function AddCharacter(legion) {
     const {
         register,
         handleSubmit,
         watch,
         formState: { errors },
     } = useForm()
-
-
+console.log("THIS IS LEGION")
+console.log(legion)
     const onSubmit = (data) => {
-              // Find the maximum existing ID
-              const maxExistingId = props.characters.reduce((maxId, char) => Math.max(maxId, char.id), 0);
+        let maxExistingId = 0;
+        if(Array.isArray(legion.characters) && legion.characters.length > 0){
+             maxExistingId = legion.characters.reduce((maxId, char) => Math.max(maxId, char.id), 0);
+        } else{
+             maxExistingId = 0;
+        }
+        // Find the maximum existing ID
+ 
 
-              // Generate a new character with an incremented ID
-              const newCharacter = {
-                  id: maxExistingId + 1,
-                  characterName: data.characterName,
-                  characterClass: data.characterClass,
-              };
-      
-              // Always ensure characters is an array
-              const updatedCharacters = Array.isArray(props.characters)
-                  ? [...props.characters, newCharacter]
-                  : [newCharacter];
-                  
-      
-              // Update the characters state
-              props.setCharacters(updatedCharacters);
-  
+        // Generate a new character with an incremented ID
+        const newCharacter = {
+            id: maxExistingId + 1,
+            characterName: data.characterName,
+            characterClass: data.characterClass,
+        };
+
+        // Always ensure characters is an array
+
+        // Always ensure characters is an array
+        const updatedCharacters = Array.isArray(legion.characters)
+            ? [...legion.characters, newCharacter]
+            : [newCharacter];
+
+        // Update the characters state
+        legion.setCharacters(updatedCharacters);
+
     };
 
 

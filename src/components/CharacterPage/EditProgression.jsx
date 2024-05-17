@@ -16,47 +16,97 @@ function EditProgression() {
 
 
 
-  useEffect(() => {
-
-    // console.log(progression);
-    if (isChecked) {
-      setProgression(prevProgression => ({
-        ...prevProgression,
-        [characterId]: {
-          characterId,
-          progression: {
-            ...prevProgression[characterId]?.progression,
-            arcaneRiver: true,
-          },
-        },
-      }));
-    } else {
-      setProgression(prevProgression => ({
-        ...prevProgression,
-        [characterId]: {
-          characterId,
-          progression: {
-            ...prevProgression[characterId]?.progression,
-            arcaneRiver: false,
-          },
-        },
-      }));
-    }
-  }, [isChecked, setProgression, characterId]);
-
 
   useEffect(() => {
-    setProgression(prevProgression => ({
-      ...prevProgression,
-      [characterId]: {
-        characterId,
-        progression: {
-          ...prevProgression[characterId]?.progression,
-          arcaneRiver: isChecked,
-        },
-      },
-    }));
+    setProgression(prevProgression => {
+      const newProgression = { ...prevProgression };
+      if (newProgression[characterId]?.progression?.arcaneRiver) {
+        newProgression[characterId].progression.arcaneRiver.isActive = isChecked;
+      } else {
+        newProgression[characterId] = {
+          characterId,
+          progression: {
+            arcaneRiver: {
+              isActive: isChecked,
+              completion: {
+                vanishingJourney: false,
+                chuChuIsland: false,
+                lachelein: false,
+                arcana: false,
+                morass: false,
+                esfera: false,
+                moonbridge: false
+              }
+            },
+            Grandis: {
+              isActive: false,
+              completion: {
+                cernium: false,
+                arcus: false,
+                odium: false,
+                shangrila: false,
+                arteria: false,
+                carcion: false
+              }
+            }
+          },
+        };
+      }
+      return newProgression;
+    });
   }, [isChecked, setProgression, characterId]);
+
+  // useEffect(() => {
+
+  //   // console.log(progression);
+  //   if (isChecked) {
+  //     setProgression(prevProgression => ({
+  //       ...prevProgression,
+  //       [characterId]: {
+  //         characterId,
+  //         progression: {
+  //           ...prevProgression[characterId]?.progression,
+  //           arcaneRiver: true,
+  //         },
+  //       },
+  //     }));
+  //   } else {
+  //     setProgression(prevProgression => ({
+  //       ...prevProgression,
+  //       [characterId]: {
+  //         characterId,
+  //         progression: {
+  //           ...prevProgression[characterId]?.progression,
+  //           arcaneRiver: false,
+  //         },
+  //       },
+  //     }));
+  //   }
+  // }, [isChecked, setProgression, characterId]);
+
+
+
+
+
+
+
+
+
+
+
+
+  // useEffect(() => {
+  //   setProgression(prevProgression => ({
+  //     ...prevProgression,
+  //     [characterId]: {
+  //       characterId,
+  //       progression: {
+  //         ...prevProgression[characterId]?.progression,
+  //         arcaneRiver: isChecked,
+  //       },
+  //     },
+  //   }));
+  // }, [isChecked, setProgression, characterId]);
 
   // useEffect(() => {
   //   setProgression(prevProgression => {
