@@ -1,4 +1,4 @@
-function RegionProgression({ completion, setCompletion }) {
+function RegionProgression({ regionName, completion, setCompletion }) {
     const handleDailyChange = (e) => {
       setCompletion({ ...completion, daily: e.target.checked });
     };
@@ -9,6 +9,7 @@ function RegionProgression({ completion, setCompletion }) {
   
     return (
       <div>
+        <h2>{regionName}</h2>
         <label>
           <input type="checkbox" checked={completion.daily} onChange={handleDailyChange} />
           Daily

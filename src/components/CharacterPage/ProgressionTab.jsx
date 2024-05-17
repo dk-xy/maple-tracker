@@ -10,6 +10,7 @@ function ProgressionTab({ character, progression, setProgression }) {
   const { characters, setCharacters, removeCharacters} = useContext(CharacterContext);
   const vanishingJourney = progression[character.id]?.progression?.arcaneRiver?.regions?.vanishingJourney;
   const [completion, setCompletion] = useState(vanishingJourney?.completion || { daily: false, weekly: false });
+  const regions = progression[character.id]?.progression?.arcaneRiver?.regions;
 
   const handleCompletionChange = (newCompletion) => {
     setCompletion(newCompletion);
@@ -26,12 +27,18 @@ function ProgressionTab({ character, progression, setProgression }) {
 
 const isEmptyProgression = Object.keys(progression).length === 1 && progression.characterId;
 
-  return (
+return (
     <div className="progressionTab">
       <div>PROG TAB</div>
-      {/* <Link to={linkName} state={{character: character, progression: progression } }>EDIT</Link> */}
-
-      {vanishingJourney?.isActive && <RegionProgression completion={completion} setCompletion={handleCompletionChange} />}
+      {regions && Object.entries(regions).map(([regionName, region]) => (
+        region.isActive && 
+        <RegionProgression 
+          key={regionName} 
+          regionName={regionName} 
+          completion={region.completion} 
+          setCompletion={newCompletion => handleCompletionChange(regionName, newCompletion)} 
+        />
+      ))}
     </div>
   );
 }
