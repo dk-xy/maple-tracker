@@ -14,20 +14,15 @@ function ResetLegion() {
     } = useForm()
 
 
-
-
     // // Retrieve existing characters from localStorage
     // const storedCharacters = JSON.parse(localStorage.getItem('Characters')) || [];
 
     const onSubmit = (data) => {
         removeCharacters();
+        setCharacters([]);
         // Add the new character to the existing array
         // const updatedCharacters = [...storedCharacters, newCharacter];
     };
-
-
-
-
 
 
     return (
@@ -37,9 +32,6 @@ function ResetLegion() {
     );
 
 }
-
-
-
 
 
 export default ResetLegion;

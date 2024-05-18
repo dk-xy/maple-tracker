@@ -35,6 +35,7 @@ function Legion({ }) {
         <div className="Legion">
             <h1>LEGION</h1>
             <AddCharacter onAddCharacter={handleAddCharacter} />
+            
             <ResetLegion />
             <div className="legionContainer">
                 {characters.length > 0 ? (
