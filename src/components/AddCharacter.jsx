@@ -7,6 +7,7 @@ import { CharacterContext } from '../contexts/context';
 
 function AddCharacter({ onAddCharacter }) {
     const { characters, setCharacters } = useContext(CharacterContext);
+    const {progression, setProgression} = useContext(ProgressionContext);
     const {
         register,
         handleSubmit,
@@ -46,8 +47,30 @@ function AddCharacter({ onAddCharacter }) {
         const newProgression = {
             characterId: newCharacter.id,
             progression: {
-                // Add your default progression data here
-            },
+                arcaneRiver: {
+                    isActive: true, // This indicates whether the Arcane River progression is active or not
+                    regions: {
+                      vanishingJourney: {
+                        name:"Oblivion",
+                        isActive: false, // This indicates whether the Vanishing Journey region is active or not
+                        completion: {
+                          daily: false,
+                          weekly: false
+                        }
+                      },
+                      chuChuIsland: {
+                        name:"Chu Chu",
+                        isActive: false, // This indicates whether the Chu Chu Island region is active or not
+                        completion: {
+                          daily: false,
+                          weekly: false
+                        }
+                      },
+                      // Add more regions as needed
+                    }
+                  }
+                  // Rest of the progression object
+                            },
         };
 
         setCharacters(updatedCharacters);

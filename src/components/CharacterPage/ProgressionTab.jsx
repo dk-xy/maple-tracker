@@ -37,7 +37,7 @@ function ProgressionTab({ character }) {
         region.isActive &&
         <RegionProgression
           key={regionName}
-          regionName={regionName}
+          regionName={region.name}
           completion={region.completion || { daily: false, weekly: false }}
           setCompletion={newCompletion => handleCompletionChange(regionName, newCompletion)}
         />

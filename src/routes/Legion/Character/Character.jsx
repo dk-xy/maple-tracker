@@ -24,7 +24,8 @@ export default function Character() {
     return (
         <div className="character-page">
             <div>{character.characterName}</div>
-            <Link to={linkName} state={{character: character, progression: progression } }>EDIT</Link>
+            {/* <Link to={linkName} state={{character: character, progression: progression } }>EDIT</Link> */}
+            <Link to={linkName} state={{character:character}}>EDIT</Link>
             <Tabs>
                 <TabList>
                     <Tab>Progression</Tab>

@@ -23,6 +23,7 @@ function Legion({ }) {
     console.log(characters)
 
     const handleAddCharacter = (characterId, characterData) => {
+        console.log("setting prog")
         setProgression(prevProgression => ({
           ...prevProgression,
           [characterId]: characterData,
@@ -34,7 +35,7 @@ function Legion({ }) {
         <div className="Legion">
             <h1>LEGION</h1>
             <AddCharacter onAddCharacter={handleAddCharacter} />
-            <ResetLegion characters={characters} removeCharacters={removeCharacters} />
+            <ResetLegion />
             <div className="legionContainer">
                 {characters.length > 0 ? (
                     characters.map((character, index) => (

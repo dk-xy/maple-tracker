@@ -23,13 +23,14 @@ const App = () => {
 
   return (
     // <div className='App'>
-    <ProgressionContext.Provider value={{ progression, setProgression }}>
 
-      <CharacterContext.Provider value={{ characters, setCharacters }}>
+
+    <CharacterContext.Provider value={{ characters, setCharacters, removeCharacters }}>
+      <ProgressionContext.Provider value={{ progression, setProgression }}>
         <Navigation />
-      </CharacterContext.Provider>
+      </ProgressionContext.Provider>
+    </CharacterContext.Provider>
 
-    </ProgressionContext.Provider>
 
     // </div>
 

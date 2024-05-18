@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { CharacterContext } from '../contexts/context';
 
-function ResetLegion(props) {
+
+function ResetLegion() {
+    
+    const { characters, setCharacters, removeCharacters } = useContext(CharacterContext);
     const {
         register,
         handleSubmit,
@@ -16,7 +20,7 @@ function ResetLegion(props) {
     // const storedCharacters = JSON.parse(localStorage.getItem('Characters')) || [];
 
     const onSubmit = (data) => {
-        props.removeCharacters()
+        removeCharacters();
         // Add the new character to the existing array
         // const updatedCharacters = [...storedCharacters, newCharacter];
     };
