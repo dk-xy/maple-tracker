@@ -9,7 +9,7 @@
 .regionProgression {
     width: 112px;
     height: 122px;
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 2px 4px;
 
 }
@@ -20,6 +20,7 @@
     align-items: center;
     justify-content: left;
     margin: 0 10px;
+    gap: 8px;
 }
 
 
@@ -28,6 +29,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 8px;
 }
 
 
@@ -35,7 +37,12 @@
     background: linear-gradient(to right, #98e0ff86 0%, #b9eaff75 100%);
 }
 
+.regionProgression.chuchu {
+    background: linear-gradient(to right, #ffccff77 0%, #bf4dbf59 100%);
+}
+
 .regionCheckBox {
+    border-radius: 8px;
     box-sizing: border-box;
     height: 36px;
     padding: 4px 8px;
@@ -45,4 +52,9 @@
     gap: 8px;
     flex-shrink: 0;
     background: linear-gradient(to right, #FFFFFF 49%, #FFFFFF 54.6%);
+}
+
+.regionCheckBox label {
+    display: inline-block;
+    width: 56px;
 }
