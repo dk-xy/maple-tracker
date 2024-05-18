@@ -52,6 +52,7 @@ function AddCharacter({ onAddCharacter }) {
                     regions: {
                       vanishingJourney: {
                         name:"Oblivion",
+                        class:"oblivion",
                         isActive: false, // This indicates whether the Vanishing Journey region is active or not
                         completion: {
                           daily: false,
@@ -60,6 +61,7 @@ function AddCharacter({ onAddCharacter }) {
                       },
                       chuChuIsland: {
                         name:"Chu Chu",
+                        class:"chuchu",
                         isActive: false, // This indicates whether the Chu Chu Island region is active or not
                         completion: {
                           daily: false,

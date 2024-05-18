@@ -1,3 +1,22 @@
-html {
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/fonts/OpenSans-Regular.ttf') format('truetype'),
+        url('/fonts/OpenSans-Bold.ttf') format('truetype'),
+        url('/fonts/OpenSans-Italic.ttf') format('truetype');
+}
+
+/* html {
     height: 1200px !important;
+} */
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h5 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 6px 0px 6px 0px;
 }

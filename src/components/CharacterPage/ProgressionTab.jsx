@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import RegionProgression from './Progression/RegionProgression';
-
+import "./characterStyle.css";
 import { useLocalStorage } from 'react-use';
 import { Link } from 'react-router-dom';
 import { CharacterContext } from '../../contexts/context';
@@ -33,15 +33,20 @@ function ProgressionTab({ character }) {
   return (
     <div className="progressionTab">
       <div>PROG TAB</div>
-      {regions && Object.entries(regions).map(([regionName, region]) => (
-        region.isActive &&
-        <RegionProgression
-          key={regionName}
-          regionName={region.name}
-          completion={region.completion || { daily: false, weekly: false }}
-          setCompletion={newCompletion => handleCompletionChange(regionName, newCompletion)}
-        />
-      ))}
+
+      <div class="regionContainer">
+        {regions && Object.entries(regions).map(([regionName, region]) => (
+          region.isActive &&
+          <RegionProgression
+            key={regionName}
+            regionName={region.name}
+            regionClass={region.class}
+            completion={region.completion || { daily: false, weekly: false }}
+            setCompletion={newCompletion => handleCompletionChange(regionName, newCompletion)}
+          />
+        ))}
+      </div>
+
     </div>
   );
 }

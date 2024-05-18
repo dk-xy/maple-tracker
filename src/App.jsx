@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 // import './App.css'
 import './index.css'
+import './App.css'
 import Layout from './Layout'
 import { Routes, Route, Link } from 'react-router-dom';
 import Legion from './routes/Legion/Legion';
