@@ -19,7 +19,7 @@ import { ProgressionContext, CharacterContext } from './contexts/context';
 
 const App = () => {
 
-  const [progression, setProgression] = useLocalStorage('Progression', {});
+  const [progression, setProgression, removeProgression] = useLocalStorage('Progression', {});
   const [characters, setCharacters, removeCharacters] = useLocalStorage('Characters', {});
 
   return (
@@ -27,7 +27,7 @@ const App = () => {
 
 
     <CharacterContext.Provider value={{ characters, setCharacters, removeCharacters }}>
-      <ProgressionContext.Provider value={{ progression, setProgression }}>
+      <ProgressionContext.Provider value={{ progression, setProgression, removeProgression }}>
         <Navigation />
       </ProgressionContext.Provider>
     </CharacterContext.Provider>

@@ -12,14 +12,28 @@ function ProgressionTab({ character }) {
   const { progression, setProgression, removeProgression } = useContext(ProgressionContext);
   const vanishingJourney = progression[character.id]?.progression?.arcaneRiver?.regions?.vanishingJourney;
   const [completion, setCompletion] = useState(vanishingJourney?.completion || { daily: false, weekly: false });
-  const regions = progression[character.id]?.progression?.arcaneRiver?.regions;
+
+  const progressionData = JSON.parse(localStorage.getItem('Progression')) || {};
+  const regions = progressionData[character.id]?.arcaneRiver?.regions || {};
+  
+  console.log("REGIONS")
+  console.log(regions);
 
 
+
+  // const handleCompletionChange = (regionName, newCompletion) => {
+  //   setProgression(prevProgression => {
+  //     const newProgression = { ...prevProgression };
+  //     newProgression[character.id].progression.arcaneRiver.regions[regionName].completion = newCompletion;
+  //     return newProgression;
+  //   });
+  // };
 
   const handleCompletionChange = (regionName, newCompletion) => {
     setProgression(prevProgression => {
       const newProgression = { ...prevProgression };
-      newProgression[character.id].progression.arcaneRiver.regions[regionName].completion = newCompletion;
+      const newRegion = { ...newProgression[character.id].progression.arcaneRiver.regions[regionName], completion: newCompletion };
+      newProgression[character.id].progression.arcaneRiver.regions[regionName] = newRegion;
       return newProgression;
     });
   };
@@ -43,6 +57,7 @@ function ProgressionTab({ character }) {
             regionClass={region.class}
             completion={region.completion || { daily: false, weekly: false }}
             setCompletion={newCompletion => handleCompletionChange(regionName, newCompletion)}
+            character={character}
           />
         ))}
       </div>

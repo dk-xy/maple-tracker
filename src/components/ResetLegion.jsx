@@ -22,7 +22,7 @@ function ResetLegion() {
     const onSubmit = (data) => {
         removeCharacters();
         setCharacters([]);
-        setProgression({});
+        removeProgression();
         // Add the new character to the existing array
         // const updatedCharacters = [...storedCharacters, newCharacter];
     };

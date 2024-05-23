@@ -16,26 +16,51 @@ import { useContext } from 'react';
 function Legion({ }) {
     // const [characters] = useLocalStorage('Characters', []);
     // const [characters, setCharacters, removeCharacters] = useLocalStorage('Characters', [])
-    const { characters, setCharacters, removeCharacters} = useContext(CharacterContext);
+    const { characters, setCharacters, removeCharacters } = useContext(CharacterContext);
     const { progression, setProgression, removeProgression } = useContext(ProgressionContext);
     // let allChars = localStorage.getItem('Characters');
     // setCharacters(JSON.parse(allChars));
     console.log(characters)
 
-    const handleAddCharacter = (characterId, characterData) => {
-        console.log("setting prog")
-        setProgression(prevProgression => ({
-          ...prevProgression,
-          [characterId]: characterData,
-        }));
-      };
+    
+//  const handleAddCharacter = (characterId, newProgression) => {
+//         setProgression(prevProgression => (
+//         {
+//             ...prevProgression,
+//             ...newProgression
+//         }));
+//     };
+    // const handleAddCharacter = (characterId, newProgression) => {
+    //     setProgression(prevProgression => {
+    //         console.log("PROG")
+    //         console.log(prevProgression)
+    //       // Create a copy of prevProgression
+    //       const updatedProgression = { ...prevProgression };
+      
+    //       // For each character in newProgression
+    //       for (const characterId in newProgression) {
+    //         // If the character already exists in prevProgression, merge their progressions
+    //         if (updatedProgression[characterId]) {
+    //           updatedProgression[characterId] = {
+    //             ...updatedProgression[characterId],
+    //             ...newProgression[characterId],
+    //           };
+    //         } else {
+    //           // If the character doesn't exist in prevProgression, add them
+    //           updatedProgression[characterId] = newProgression[characterId];
+    //         }
+    //       }
+      
+    //       return updatedProgression;
+    //     });
+    //   };
 
     return (
 
         <div className="Legion">
             <h1>LEGION</h1>
-            <AddCharacter onAddCharacter={handleAddCharacter} />
-            
+            <AddCharacter />
+
             <ResetLegion />
             <div className="legionContainer">
                 {characters.length > 0 ? (

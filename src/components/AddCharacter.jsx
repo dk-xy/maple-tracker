@@ -5,9 +5,9 @@ import { useForm } from 'react-hook-form';
 import { ProgressionContext } from '../contexts/context';
 import { CharacterContext } from '../contexts/context';
 
-function AddCharacter({ onAddCharacter }) {
+function AddCharacter( ) {
     const { characters, setCharacters } = useContext(CharacterContext);
-    const {progression, setProgression} = useContext(ProgressionContext);
+    const { progression, setProgression} = useContext(ProgressionContext);
     const {
         register,
         handleSubmit,
@@ -15,72 +15,105 @@ function AddCharacter({ onAddCharacter }) {
         formState: { errors },
     } = useForm()
 
-    // Generate a new progression object for the new character
+    // useEffect(() => {
+    //     if (characters.length > 0) {
+    //         const newCharacter = characters[characters.length - 1];
+    //         const newProgression = {
+    //             [newCharacter.id]: {
+    //                 arcaneRiver: {
+    //                     isActive: true,
+    //                     regions: {
+    //                         vanishingJourney: {
+    //                             name:"Oblivion",
+    //                             class:"oblivion",
+    //                             isActive: false,
+    //                             completion: {
+    //                                 daily: false,
+    //                                 weekly: false
+    //                             }
+    //                         },
+    //                         chuChuIsland: {
+    //                             name:"Chu Chu",
+    //                             class:"chuchu",
+    //                             isActive: false,
+    //                             completion: {
+    //                                 daily: false,
+    //                                 weekly: false
+    //                             }
+    //                         },
+    //                     }
+    //                 },
+    //             },
+    //         };
 
-
-    console.log("THIS IS LEGION")
-    console.log(characters)
+    //         setProgression(prevProgression => ({
+    //             ...prevProgression,
+    //             ...newProgression
+    //         }));
+    //     }
+    // }, [characters]);
+    
     const onSubmit = (data) => {
+        // Find the maximum existing ID
         let maxExistingId = 0;
         if (Array.isArray(characters) && characters.length > 0) {
             maxExistingId = characters.reduce((maxId, char) => Math.max(maxId, char.id), 0);
         } else {
             maxExistingId = 0;
         }
-        // Find the maximum existing ID
-
-
+        
         // Generate a new character with an incremented ID
         const newCharacter = {
             id: maxExistingId + 1,
             characterName: data.characterName,
             characterClass: data.characterClass,
         };
-
-        // Always ensure characters is an array
-
+    
         // Always ensure characters is an array
         const updatedCharacters = Array.isArray(characters)
             ? [...characters, newCharacter]
             : [newCharacter];
-
-        const newProgression = {
-            characterId: newCharacter.id,
-            progression: {
-                arcaneRiver: {
-                    isActive: true, // This indicates whether the Arcane River progression is active or not
-                    regions: {
-                      vanishingJourney: {
-                        name:"Oblivion",
-                        class:"oblivion",
-                        isActive: false, // This indicates whether the Vanishing Journey region is active or not
-                        completion: {
-                          daily: false,
-                          weekly: false
-                        }
-                      },
-                      chuChuIsland: {
-                        name:"Chu Chu",
-                        class:"chuchu",
-                        isActive: false, // This indicates whether the Chu Chu Island region is active or not
-                        completion: {
-                          daily: false,
-                          weekly: false
-                        }
-                      },
-                      // Add more regions as needed
-                    }
-                  }
-                  // Rest of the progression object
-                            },
-        };
-
+    
         setCharacters(updatedCharacters);
-        onAddCharacter(newCharacter.id, newProgression);
-
-        
+    
+        // Retrieve existing progression from localstorage
+        const existingProgression = JSON.parse(localStorage.getItem('Progression')) || {};
+        const newProgression = {
+            [newCharacter.id]: {
+                arcaneRiver: {
+                    isActive: true,
+                    regions: {
+                        vanishingJourney: {
+                            name:"Oblivion",
+                            class:"oblivion",
+                            isActive: false,
+                            completion: {
+                                daily: false,
+                                weekly: false
+                            }
+                        },
+                        chuChuIsland: {
+                            name:"Chu Chu",
+                            class:"chuchu",
+                            isActive: false,
+                            completion: {
+                                daily: false,
+                                weekly: false
+                            }
+                        },
+                    }
+                },
+            },
+        };
+        // Merge existing progression with new progression
+        const updatedProgression = {
+            ...existingProgression,
+            ...newProgression
+        };
+    
+        // Store updated progression back to localstorage
+        localStorage.setItem('Progression', JSON.stringify(updatedProgression));
     };
-
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
